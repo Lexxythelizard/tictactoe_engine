@@ -1,0 +1,14 @@
+#compiled executables
+
+tic_tac_toe_v1
+tic_tac_toe_v1.out
+*.out
+*.o
+*.exe
+
+#Temporary files
+*.swp
+*.tmp
+
+#back ups
+*~
