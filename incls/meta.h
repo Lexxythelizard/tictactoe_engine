@@ -5,6 +5,7 @@
 # define FALSE (0)
 # define X ('X')
 # define O ('O')
+# define EMPTY (' ')
 
 # define MIN_LEN (3)
 # define MIN_WIDTH (3)

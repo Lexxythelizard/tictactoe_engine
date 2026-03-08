@@ -14,7 +14,13 @@ int	get_nbr_from_base(char *inp, char *base);
 int	get_row_by_num(int num, t_finfo *finfo);
 int	get_col_by_num(int num, t_finfo *finfo);
 int	get_cell_by_row_col(int row, int col, t_finfo *finfo);
-
+void	write_cell(t_finfo *finfo, char sign, int cell, char (*field)[finfo->columns]);
+void	delete_cell(t_finfo *finfo, int cell, char (*field)[finfo->columns]);
+void	delete_all_cells(t_finfo *finfo, char (*field)[finfo->columns]);
+void	init_field(t_finfo *finfo, char (**field)[finfo->columns]);
+void	free_field(t_finfo *finfo, char (**field)[finfo->columns]);
+void	print_memory_arr(t_finfo *finfo, char (*field)[finfo->columns]);
+void	print_field_arr(t_finfo *finfo, char (*field)[finfo->columns]);
 
 // --- DOC ---
 // comment
@@ -25,6 +31,7 @@ int	main(int argc, char **argv)
 	t_finfo	finfo;
 	char	*test_inp;
 	int	temp;
+	char	(*field)[finfo.columns];
 
 	if (argc == 6)
 	{
@@ -68,6 +75,31 @@ int	main(int argc, char **argv)
 		printf("test: from %s: got: %d --> row: %d col: %d\n", DDE_BASE, temp, get_row_by_num(temp, &finfo), get_col_by_num(temp, &finfo));
 		temp = get_nbr_from_base(test_inp, HEX_BASE);
 		printf("test: from %s: got: %d --> row: %d col: %d\n", HEX_BASE, temp, get_row_by_num(temp, &finfo), get_col_by_num(temp, &finfo));
+		printf("\n---test field manipulation---\n");
+		printf("init field\n");
+		init_field(&finfo, &field);
+		printf("write cell\n");
+		write_cell(&finfo, 'X', FIRST_CELL, field);
+		printf("delete cell\n");
+		delete_cell(&finfo, FIRST_CELL, field);
+		printf("free field\n");
+		free_field(&finfo, &field);
+		printf("DONE\n");
+		
+		printf("init new field\n");
+		init_field(&finfo, &field);
+		print_field_arr(&finfo, field);
+		printf("write cell\n");
+		write_cell(&finfo, 'X', FIRST_CELL, field);
+		print_field_arr(&finfo, field);
+		printf("delete cell\n");
+		delete_cell(&finfo, FIRST_CELL, field);
+		print_field_arr(&finfo, field);
+		print_memory_arr(&finfo, field);
+		printf("free new field\n");
+		free_field(&finfo, &field);
+		printf("DONE\n");
+		
 	}
 	else
 		printf("need four arguments");

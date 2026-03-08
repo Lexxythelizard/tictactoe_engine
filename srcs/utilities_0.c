@@ -10,8 +10,8 @@ int	get_cell_by_row_col(int row, int col, t_finfo *finfo);
 // --- DOC ---
 /*
 TODO:
-	- test		get_row_by_num		: 
-	- test		get_col_by_num		: 
+	- test		get_row_by_num		: DONE
+	- test		get_col_by_num		: DONE
 	- test		get_cell_by_row_col	: 
 */
 
