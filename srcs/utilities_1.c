@@ -1,9 +1,15 @@
 // --- include ---
 #include <unistd.h>
+#include <stdlib.h>
 
 // --- prototype ---
 int	is_element_in_arr(char c, char *str);
 int	get_nbr_from_base(char *inp, char *base);
+char	*convert_nbr_to_base(int nbr, char *base);
+char	*lxy_strcpy(char *src, char *dest);
+// import
+int     get_str_len(char *str);
+int     get_len_of_number(int nbr, int base);
 
 // --- DOC ---
 /*
@@ -59,4 +65,54 @@ int	get_nbr_from_base(char *inp, char *base)
 		inp++;
 	}
 	return (nbr);
+}
+
+char	*convert_nbr_to_base(int nbr, char *base)
+{
+	int	divisor;
+	int	len_base;
+	int	len;
+	char	*out;
+	
+	divisor = 1;
+	len_base = get_str_len(base);
+	len = get_len_of_number(nbr, len_base);
+	if (nbr > 0)
+		nbr *= (-1);
+	while ((int)(nbr / divisor) <= -len_base)
+		divisor *= len_base;
+	out = malloc(len + 1);
+	if (out == NULL)
+		return (NULL);
+	len = 0;
+	if (nbr < 0)
+	{
+		out[len] = '-';
+		len++;
+	}
+	while (divisor >= len_base)
+	{
+		out[len] = base[(int)(nbr / divisor) * (-1)];
+		nbr %= divisor;
+		divisor /= len_base;
+		len++;
+	}
+	out[len] = base[(int)(nbr / divisor) * (-1)];
+	out[len + 1] = '\0';
+	return (out);
+}
+
+char	*lxy_strcpy(char *src, char *dest)
+{
+	char	*new;
+
+	new = dest;
+	while (*src)
+	{
+		*dest = *src;
+		src++;
+		dest++;
+	}
+	*dest = '\0';
+	return (new);
 }

@@ -6,6 +6,8 @@
 int	get_row_by_num(int num, t_finfo *finfo);
 int	get_col_by_num(int num, t_finfo *finfo);
 int	get_cell_by_row_col(int row, int col, t_finfo *finfo);
+int	get_str_len(char *str);
+int	get_len_of_number(int nbr, int base);
 
 // --- DOC ---
 /*
@@ -37,4 +39,36 @@ int	get_col_by_num(int num, t_finfo *finfo)
 int	get_cell_by_row_col(int row, int col, t_finfo *finfo)
 {
 	return (row * (*finfo).columns + col + 1);
+}
+
+int	get_str_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
+}
+
+int	get_len_of_number(int nbr, int base)
+{
+	int len;
+	int divisor;
+
+	len = 1;
+	divisor = 1;
+	if (nbr < 0)
+		len++;
+	else
+		nbr *= (-1);
+	while ((int)(nbr / divisor) <= -base)
+	{
+		divisor *= base;
+		len++;
+	}
+	return (len);
 }

@@ -25,6 +25,13 @@ typedef struct s_field_info
 	int	columns;
 	int	win_len;
 	int	base;
+	char	*base_str;
 } t_finfo;
+
+typedef struct s_player
+{
+	char	*name;
+	char	mark;
+} t_player;
 
 # endif 

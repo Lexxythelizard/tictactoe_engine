@@ -16,7 +16,7 @@ int     is_element_in_arr(char c, char *str);
 TODO:
 	- test	is_field_valid			: DONE
 	- test	is_range_valid			: DONE
-	- test	is_cel_input_valid		: 
+	- test	is_cel_input_valid		: DONE 
 	- test	is_cell_in_field		: DONE
 */
 
@@ -42,12 +42,9 @@ int	is_range_valid(t_finfo *finfo)
 
 int	is_cell_input_valid(char *inp, t_finfo *finfo)
 {
-	//under construction
-	//controll if inp in base
-	(void)finfo;
 	while (*inp)
 	{
-		if (!(is_element_in_arr(*inp, DEC_BASE)))
+		if (!(is_element_in_arr(*inp, (*finfo).base_str)))
 			return (0);
 		inp++;
 	}
@@ -60,5 +57,3 @@ int	is_cell_in_field(int cell, t_finfo *finfo)
 		return (0);
 	return (1);
 }
-
-
