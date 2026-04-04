@@ -1,63 +1,92 @@
-createlib: ./ttt_lib/libtttengine.a ./ttt_lib/libtttutils.a clean
+createlib: ./ttt_lib/libtttcore.a ./ttt_lib/libtttio.a ./ttt_lib/libtttutils.a clean
 
 clean:
-	rm -f ./srcs/field_manipulation.o ./srcs/read_field_0.o \
-        ./srcs/read_field_1.o ./srcs/validation.o ./srcs/read_user_input.o \
-        ./srcs/utilities_0.o ./srcs/utilities_1.o
+	rm -f ./srcs/core_field_manipulation.o ./srcs/core_read_field.o \
+	./srcs/core_is_won.o ./srcs/core_won_diagonal.o \
+	./srcs/core_won_row_col.o ./srcs/core_validation.o \
+	./srcs/core_setup_values.o ./srcs/core_utils.o  \
+	./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
+	./srcs/io_integrate_str_in_str.o ./srcs/io_utils.o
 
-# +++++ libaries +++++
+# +++++ libraries +++++
 
-./ttt_lib/libtttengine.a : ./srcs/field_manipulation.o ./srcs/read_field_0.o \
-	./srcs/read_field_1.o ./srcs/validation.o ./srcs/read_user_input.o \
-	./srcs/utilities_0.o ./srcs/utilities_1.o
-	ar rcs ./ttt_lib/libtttengine.a ./srcs/field_manipulation.o ./srcs/read_field_0.o \
-        ./srcs/read_field_1.o ./srcs/validation.o ./srcs/read_user_input.o \
-        ./srcs/utilities_0.o ./srcs/utilities_1.o
+./ttt_lib/libtttcore.a : ./srcs/core_field_manipulation.o ./srcs/core_read_field.o \
+	./srcs/core_is_won.o ./srcs/core_won_diagonal.o ./srcs/core_won_row_col.o \
+	./srcs/core_validation.o ./srcs/core_setup_values.o ./srcs/core_utils.o
+	ar rcs ./ttt_lib/libtttcore.a ./srcs/core_field_manipulation.o \
+	./srcs/core_read_field.o ./srcs/core_is_won.o ./srcs/core_won_diagonal.o \
+	./srcs/core_won_row_col.o ./srcs/core_validation.o \
+	./srcs/core_setup_values.o ./srcs/core_utils.o
 
-./ttt_lib/libtttutils.a : ./srcs/utilities_0.o ./srcs/utilities_1.o
-	ar rcs ./ttt_lib/libtttutils.a ./srcs/utilities_0.o ./srcs/utilities_1.o
+./ttt_lib/libtttio.a : ./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
+	./srcs/io_integrate_str_in_str.o ./srcs/io_utils.o
+	ar rcs ./ttt_lib/libtttio.a ./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
+	./srcs/io_integrate_str_in_str.o ./srcs/io_utils.o
+
+./ttt_lib/libtttutils.a : ./srcs/core_utils.o ./srcs/io_utils.o
+	ar rcs ./ttt_lib/libtttutils.a ./srcs/core_utils.o ./srcs/io_utils.o
 
 # +++++ Objectfiles +++++
 
-./srcs/field_manipulation.o : ./srcs/field_manipulation.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/field_manipulation.c -I ./incls/ \
-	-o ./srcs/field_manipulation.o
+./srcs/core_field_manipulation.o : ./srcs/core_field_manipulation.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_field_manipulation.c -I ./incls/ \
+	-o ./srcs/core_field_manipulation.o
 
-./srcs/read_field_0.o : ./srcs/read_field_0.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/read_field_0.c -I ./incls/ \
-	-o ./srcs/read_field_0.o
+./srcs/core_read_field.o : ./srcs/core_read_field.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_read_field.c -I ./incls/ \
+	-o ./srcs/core_read_field.o
 
-./srcs/read_field_1.o : ./srcs/read_field_1.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/read_field_1.c -I ./incls/ \
-	-o ./srcs/read_field_1.o
+./srcs/core_is_won.o : ./srcs/core_is_won.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_is_won.c -I ./incls/ \
+	-o ./srcs/core_is_won.o
 
-./srcs/validation.o : ./srcs/validation.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/validation.c -I ./incls/ \
-	-o ./srcs/validation.o
+./srcs/core_won_diagonal.o : ./srcs/core_won_diagonal.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_won_diagonal.c -I ./incls/ \
+	-o ./srcs/core_won_diagonal.o
 
-./srcs/read_user_input.o : ./srcs/read_user_input.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/read_user_input.c -I ./incls/ \
-	-o ./srcs/read_user_input.o
+./srcs/core_won_row_col.o : ./srcs/core_won_row_col.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_won_row_col.c -I ./incls/ \
+	-o ./srcs/core_won_row_col.o
 
-./srcs/setup.o : ./srcs/setup.c ./incls/meta.h \
-	./incls/tttengine.h
-	cc -Wall -Wextra -Werror -c ./srcs/setup.c -I ./incls/ \
-	-o ./srcs/setup.o
+./srcs/core_validation.o : ./srcs/core_validation.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_validation.c -I ./incls/ \
+	-o ./srcs/core_validation.o
 
-./srcs/utilities_0.o : ./srcs/utilities_0.c ./incls/meta.h \
-	./incls/tttengine.h ./incls/tttutils.h
-	cc -Wall -Wextra -Werror -c ./srcs/utilities_0.c -I ./incls/ \
-	-o ./srcs/utilities_0.o
+./srcs/core_setup_values.o : ./srcs/core_setup_values.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_setup_values.c -I ./incls/ \
+	-o ./srcs/core_setup_values.o
 
-./srcs/utilities_1.o : ./srcs/utilities_1.c ./incls/meta.h \
-	./incls/tttengine.h ./incls/tttutils.h
-	cc -Wall -Wextra -Werror -c ./srcs/utilities_1.c -I ./incls/ \
-	-o ./srcs/utilities_1.o
+./srcs/core_utils.o : ./srcs/core_utils.c ./incls/meta.h \
+	./incls/tttcore.h ./incls/tttutils.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_utils.c -I ./incls/ \
+	-o ./srcs/core_utils.o
+
+./srcs/io_user_input.o : ./srcs/io_user_input.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_user_input.c -I ./incls/ \
+	-o ./srcs/io_user_input.o
+
+./srcs/io_convert_str_int.o : ./srcs/io_convert_str_int.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_convert_str_int.c -I ./incls/ \
+	-o ./srcs/io_convert_str_int.o
+
+./srcs/io_integrate_str_in_str.o : ./srcs/io_integrate_str_in_str.c ./incls/meta.h \
+	./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_integrate_str_in_str.c -I ./incls/ \
+	-o ./srcs/io_integrate_str_in_str.o
+
+./srcs/io_utils.o : ./srcs/io_utils.c ./incls/meta.h \
+	./incls/tttcore.h ./incls/tttutils.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_utils.c -I ./incls/ \
+	-o ./srcs/io_utils.o
 
 .PHONY: clean createlib
 

@@ -100,6 +100,7 @@ Run with:
 Player 1 got: X
 Player 2 got: O
 
+
  X |   |  
 -----------
  O | X |  

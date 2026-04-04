@@ -15,7 +15,7 @@ TODO:
 	- implement	set_player()		: DONE
 	- implement	set_field()		: DONE
 	- implement	...			: 
-	- test		set_player()		: 
+	- test		set_player()		: DONE 
 */
 
 // --- run ---

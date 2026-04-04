@@ -1,28 +1,17 @@
-// --- include ---
-#include <unistd.h>
-#include <stdlib.h>
+// +++++++++++ IO Utilities +++++++++++++++
 
-// --- prototype ---
+// --- include ---
 int	is_element_in_arr(char c, char *str);
+int	get_str_len(char *str);
 char	*lxy_strcpy(char *src, char *dest);
-// import
-int     get_str_len(char *str);
-int     get_len_of_number(int nbr, int base);
 
 // --- DOC ---
 /*
-TODO:
-	- test		is_element_in_arr	: DONE
-	- implement	get_nbr_from_base	: DONE
-	- test		get_nbr_from_base	: DONE
-	- test		*convert_nbr_to_base	: DONE
-	- split		*conv... init_str	: 
+sniggle
 */
 
-// --- run ---
-
-
 // --- define ---
+
 int	is_element_in_arr(char c, char *str)
 {
 	while (*str)
@@ -34,6 +23,18 @@ int	is_element_in_arr(char c, char *str)
 	return (0);
 }
 
+int	get_str_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
+}
 
 char	*lxy_strcpy(char *src, char *dest)
 {

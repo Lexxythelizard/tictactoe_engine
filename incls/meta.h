@@ -6,6 +6,8 @@
 # define X ('X')
 # define O ('O')
 # define EMPTY (' ')
+# define P1 "Player 1"
+# define P2 "Player 2"
 
 # define MIN_LEN (3)
 # define MIN_WIDTH (3)
