@@ -1,13 +1,7 @@
-#ifndef META_H
-# define META_H
+#ifndef FIELD_H
+# define FIELD_H
 
-# define TRUE (1)
-# define FALSE (0)
-# define X ('X')
-# define O ('O')
 # define EMPTY (' ')
-# define P1 "Player 1"
-# define P2 "Player 2"
 
 # define MIN_LEN (3)
 # define MIN_WIDTH (3)
@@ -29,11 +23,5 @@ typedef struct s_field_info
 	int	base;
 	char	*base_str;
 } t_finfo;
-
-typedef struct s_player
-{
-	char	*name;
-	char	mark;
-} t_player;
 
 # endif 

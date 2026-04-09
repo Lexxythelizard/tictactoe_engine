@@ -1,6 +1,6 @@
 // --- include ---
-#include <unistd.h>
-#include "../incls/meta.h"
+#include "../incls/field.h"
+#include "../incls/player.h"
 
 // --- prototype ---
 void	set_base(t_finfo *finfo, int base);

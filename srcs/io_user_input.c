@@ -1,7 +1,6 @@
 // --- include ---
 #include <unistd.h>
 #include <stdlib.h>
-#include "../incls/meta.h"
 
 // --- prototype ---
 char	*get_user_input(char *str);
@@ -34,7 +33,7 @@ char	*read_stdin(void)
 	c = 0;
 	input = malloc(1);
 	input[0] = c;	
-	while (TRUE)
+	while (1)
 	{
 		read(0, &c, 1);
 		if (c == 10)

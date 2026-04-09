@@ -1,7 +1,7 @@
 // +++++++++++ CORE Utils +++++++++++++++
 
 // --- include ---
-#include "../incls/meta.h"
+#include "../incls/field.h"
 
 // --- include ---
 int	get_row_by_num(int num, t_finfo *finfo);

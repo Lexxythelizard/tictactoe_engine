@@ -1,6 +1,5 @@
 // --- include ---
-#include <unistd.h>
-#include "../incls/meta.h"
+#include "../incls/field.h"
 
 // --- prototype ---
 int	is_field_valid(t_finfo *finfo);

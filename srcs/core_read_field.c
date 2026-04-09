@@ -1,8 +1,7 @@
 // +++++++++++ CORE read_field +++++++++++++++
 
 // --- include ---
-#include <unistd.h>
-#include "../incls/meta.h"
+#include "../incls/field.h"
 
 // --- prototype ---
 int	is_every_cell_written(t_finfo *finfo, char (*field)[finfo->columns]);

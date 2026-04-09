@@ -1,7 +1,8 @@
 #ifndef TTTCORE_H
 # define TTTCORE_H
 
-#include "meta.h"
+#include "field.h"
+#include "player.h"
 
 // read field
 int		is_every_cell_written(t_finfo *finfo, char (*field)[finfo->columns]);

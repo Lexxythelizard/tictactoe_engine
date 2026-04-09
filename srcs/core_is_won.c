@@ -1,6 +1,5 @@
 // --- include ---
-#include <unistd.h>
-#include "../incls/meta.h"
+#include "../incls/field.h"
 
 // --- prototype ---
 int	is_won(t_finfo *finfo, char mark, char (*field)[finfo->columns]);

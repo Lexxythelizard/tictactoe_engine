@@ -1,7 +1,5 @@
 // --- include ---
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 // --- prototype ---
 char	*integrate_in_str(char *str, char **strs);
@@ -9,7 +7,7 @@ void	write_new_string(char *dest, char *srcs, char **incl, int n);
 int	count_valid_integration_expressions(char *str);
 int	is_valid_integration_expression(char *expression);
 int	get_len_n_strs(char **strs, int n);
-//for testing
+// import
 int	get_str_len(char *str);
 
 // --- DOC ---
@@ -23,6 +21,7 @@ TODO:
 */
 
 // --- test ---
+/*
 int main()
 {
 	char	*str = "What <s> the <s> say <s> cock";
@@ -41,6 +40,7 @@ int main()
 	free(new_str);
 	return 0;
 }
+*/
 
 // --- define ---
 
@@ -144,15 +144,5 @@ int	get_len_n_strs(char **strs, int n)
 		len += get_str_len(strs[i]);
 		i++;
 	}
-	return (len);
-}
-
-int get_str_len(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
 	return (len);
 }

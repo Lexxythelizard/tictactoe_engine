@@ -1,7 +1,8 @@
 // +++++++++++ IO Utilities +++++++++++++++
 
 // --- include ---
-int	is_element_in_arr(char c, char *str);
+int	is_numeric(char *str);
+int	is_char_in_str(char c, char *str);
 int	get_str_len(char *str);
 char	*lxy_strcpy(char *src, char *dest);
 
@@ -12,7 +13,20 @@ sniggle
 
 // --- define ---
 
-int	is_element_in_arr(char c, char *str)
+int	is_numeric(char *str)
+{
+	if (!(*str))
+		return (0);
+	while (*str)
+	{
+		if ((*str <= '0') || (*str >= '9'))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int	is_char_in_str(char c, char *str)
 {
 	while (*str)
 	{

@@ -1,7 +1,6 @@
 // +++++++++++ IO Convert_str_int +++++++++++++++
 
 // --- include ---
-#include <unistd.h>
 #include <stdlib.h>
 
 // --- prototype ---
@@ -11,7 +10,7 @@ char	*convert_nbr_to_base(int nbr, char *base);
 int	get_len_of_number(int nbr, int base);
 // import
 int	get_str_len(char *str);
-int	is_element_in_arr(char c, char *str);
+int	is_char_in_str(char c, char *str);
 
 // --- DOC ---
 /*
@@ -50,7 +49,7 @@ int	get_nbr_from_base(char *inp, char *base)
 	while (*inp)
 	{
 		i = 0;
-		if (!(is_element_in_arr(*inp, base)))
+		if (!(is_char_in_str(*inp, base)))
 			return (0);
 		while ((base[i]) && (base[i] != *inp))
 		{

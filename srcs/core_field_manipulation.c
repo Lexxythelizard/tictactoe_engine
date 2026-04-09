@@ -1,7 +1,6 @@
 // --- include ---
-#include <unistd.h>
 #include <stdlib.h>
-#include "../incls/meta.h"
+#include "../incls/field.h"
 
 // --- prototype ---
 void	write_cell(t_finfo *finfo, char sign, int cell, char (*field)[finfo->columns]);
