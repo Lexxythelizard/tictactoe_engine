@@ -4,7 +4,11 @@
 
 createlib: ./ttt_lib/libtttcore.a ./ttt_lib/libtttio.a ./ttt_lib/libtttutils.a clean
 
-first_prototype: ./playable_prototype/first_prototype \
+first_prototype: ./play/prototype \
+	./ttt_lib/libtttcore.a ./ttt_lib/libtttio.a ./ttt_lib/libtttutils.a \
+	clean
+
+second_prototype: ./play/prototype_two \
 	./ttt_lib/libtttcore.a ./ttt_lib/libtttio.a ./ttt_lib/libtttutils.a \
 	clean
 
@@ -15,11 +19,12 @@ clean:
 	./srcs/core_setup_values.o ./srcs/core_utils.o  \
 	./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
 	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o \
+	./srcs/io_terminal_output_utils.o ./srcs/io_string_array.o \
 	./srcs/io_utils.o
 
 # +++++ programms +++++
 
-./playable_prototype/first_prototype : ./playable_prototype/first_prototype.c \
+./play/prototype : ./playable_prototype/first_prototype.c \
 	./ui/cli/print_field.c ./ui/cli/print_error_messages.c \
 	./ui/cli/print_game_messages.c
 	mkdir -p play
@@ -27,6 +32,26 @@ clean:
 	./ui/cli/print_field.c ./ui/cli/print_error_messages.c \
 	./ui/cli/print_game_messages.c \
 	-L ./ttt_lib/ -l tttcore -l tttio -l tttutils -o ./play/prototype
+
+./play/prototype_two : ./playable_prototype/second_prototype.c \
+	./engine/terminal_game_core.c \
+	./game/cli/terminal_menu_layer_zero.c \
+	./game/cli/terminal_menu_layer_first.c ./game/cli/terminal_menu_layer_sec.c \
+	./game/cli/terminal_menu_layer_third.c ./game/cli/terminal_set_predefined_field.c \
+	./ui/cli/print_field.c ./ui/cli/print_error_messages.c \
+	./ui/cli/print_game_messages.c ./ui/cli/print_stats.c \
+	./ui/cli/get_options.c
+	mkdir -p play
+	cc -Wall -Wextra -Werror ./playable_prototype/second_prototype \
+	./engine/terminal_game_core.c \
+	./game/cli/terminal_menu_layer_zero.c \
+	./game/cli/terminal_menu_layer_first.c ./game/cli/terminal_menu_layer_sec.c \
+	./game/cli/terminal_menu_layer_third.c \
+	./game/cli/terminal_set_predefined_field.c ./ui/cli/print_field.c \
+	./ui/cli/print_error_messages.c ./ui/cli/print_game_messages.c \
+	./ui/cli/print_stats.c ./ui/cli/get_options.c \
+	./incls/terminal_menu.h \
+	-L ./ttt_lib/ -l tttcore -l tttio -l tttutils -o ./play/prototype_two
 
 # +++++ libraries +++++
 
@@ -40,10 +65,14 @@ clean:
 	./srcs/core_setup_values.o ./srcs/core_utils.o
 
 ./ttt_lib/libtttio.a : ./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
-	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o ./srcs/io_utils.o
+	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o \
+	./srcs/io_terminal_output_utils.o ./srcs/io_string_array.o \
+	./srcs/io_utils.o
 	mkdir -p ttt_lib
 	ar rcs ./ttt_lib/libtttio.a ./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
-	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o ./srcs/io_utils.o
+	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o \
+	./srcs/io_terminal_output_utils.o ./srcs/io_string_array.o \
+	./srcs/io_utils.o
 
 ./ttt_lib/libtttutils.a : ./srcs/core_utils.o ./srcs/io_utils.o
 	mkdir -p ttt_lib
@@ -92,29 +121,39 @@ clean:
 	-o ./srcs/core_utils.o
 
 ./srcs/io_user_input.o : ./srcs/io_user_input.c \
-	./incls/tttcore.h
+	./incls/tttio.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_user_input.c -I ./incls/ \
 	-o ./srcs/io_user_input.o
 
 ./srcs/io_convert_str_int.o : ./srcs/io_convert_str_int.c \
-	./incls/tttcore.h
+	./incls/tttio.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_convert_str_int.c -I ./incls/ \
 	-o ./srcs/io_convert_str_int.o
 
 ./srcs/io_integrate_str_in_str.o : ./srcs/io_integrate_str_in_str.c \
-	./incls/tttcore.h
+	./incls/tttio.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_integrate_str_in_str.c -I ./incls/ \
 	-o ./srcs/io_integrate_str_in_str.o
 
+./srcs/io_string_array.o : ./srcs/io_string_array.c \
+	./incls/tttio.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_string_array.c -I ./incls/ \
+	-o ./srcs/io_string_array.o
+
 ./srcs/io_terminal_output.o : ./srcs/io_terminal_output.c \
-	./incls/tttcore.h
+	./incls/tttio.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_terminal_output.c -I ./incls/ \
 	-o ./srcs/io_terminal_output.o
+
+./srcs/io_terminal_output_utils.o : ./srcs/io_terminal_output_utils.c \
+	./incls/tttio.h
+	cc -Wall -Wextra -Werror -c ./srcs/io_terminal_output_utils.c -I ./incls/ \
+	-o ./srcs/io_terminal_output_utils.o
 
 ./srcs/io_utils.o : ./srcs/io_utils.c \
 	./incls/tttcore.h ./incls/tttutils.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_utils.c -I ./incls/ \
 	-o ./srcs/io_utils.o
 
-.PHONY: clean createlib first_prototype
+.PHONY: clean createlib first_prototype second_prototype
 

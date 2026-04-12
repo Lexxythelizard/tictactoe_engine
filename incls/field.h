@@ -15,6 +15,13 @@
 # define DDE_BASE "0123456789AB"
 # define HEX_BASE "0123456789ABCDEF"
 
+# define FINFO_ROWS "lenght cells: "
+# define FINFO_COLS "width cells : "
+# define FINFO_WLEN "win lentgh  : "
+# define FINFO_BASE_I "base of     : "
+# define FINFO_BASE_S "base        : "
+
+
 typedef struct s_field_info
 {
 	int	rows;

@@ -5,6 +5,7 @@ int	is_numeric(char *str);
 int	is_char_in_str(char c, char *str);
 int	get_str_len(char *str);
 char	*lxy_strcpy(char *src, char *dest);
+int	lxy_strcmp(char *str1, char *str2);
 
 // --- DOC ---
 /*
@@ -63,4 +64,14 @@ char	*lxy_strcpy(char *src, char *dest)
 	}
 	*dest = '\0';
 	return (new);
+}
+
+int	lxy_strcmp(char *str1, char *str2)
+{
+	while ((*str1) && (*str1 == *str2))
+	{
+		str1++;
+		str2++;
+	}
+	return (*str1 - *str2);
 }

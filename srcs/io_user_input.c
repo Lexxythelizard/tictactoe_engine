@@ -4,6 +4,7 @@
 
 // --- prototype ---
 char	*get_user_input(char *str);
+char	get_user_input_char(char *str);
 char	*read_stdin(void);
 void	append_str(char **str, char c);
 //import
@@ -23,6 +24,23 @@ char	*get_user_input(char *str)
 		str++;
 	}
 	return read_stdin();
+}
+
+char	get_user_input_char(char *str)
+{
+	char	c;
+	char	*temp;
+
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+	temp = read_stdin();
+	c = *temp;
+	free(temp);
+	temp = NULL;
+	return (c);
 }
 
 char	*read_stdin(void)
