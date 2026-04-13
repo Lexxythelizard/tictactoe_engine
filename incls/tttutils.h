@@ -10,5 +10,6 @@ int		is_numeric(char *str);
 int		is_element_in_arr(char c, char *str);
 int     	get_str_len(char *str);
 char	*lxy_strcpy(char *src, char *dest);
+int		lxy_strcmp(char *str1, char *str2);
 
 # endif

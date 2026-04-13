@@ -1,6 +1,9 @@
 #ifndef TERMINAL_MENU_H
 # define TERMINAL_MENU_H
 
+//include
+# include <stddef.h>
+
 // layer NULL
 # define PATH_MAIN "\npath: main/\n"
 // layer first

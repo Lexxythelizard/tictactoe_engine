@@ -42,7 +42,7 @@ clean:
 	./ui/cli/print_game_messages.c ./ui/cli/print_stats.c \
 	./ui/cli/get_options.c
 	mkdir -p play
-	cc -Wall -Wextra -Werror ./playable_prototype/second_prototype \
+	cc -Wall -Wextra -Werror -g ./playable_prototype/second_prototype.c \
 	./engine/terminal_game_core.c \
 	./game/cli/terminal_menu_layer_zero.c \
 	./game/cli/terminal_menu_layer_first.c ./game/cli/terminal_menu_layer_sec.c \

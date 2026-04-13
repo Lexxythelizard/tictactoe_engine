@@ -1,7 +1,7 @@
 // --- include ---
 #include <stdlib.h>
-#include "../incls/tttio.h"
-#include "../incls/tttutils.h"
+#include "../../incls/tttio.h"
+#include "../../incls/tttutils.h"
 
 // --- prototype ---
 int	get_is_willing_to_continue(void);
@@ -95,19 +95,19 @@ int	get_is_willing_to_continue(void)
 
 int	get_user_option(char *menu, char **options)
 {
-	char	temp_0;
+	char	*temp_0;
 	int	out;
 	int	i;
 
 	out = (-1);
+	put_str(menu);
 	while (out < 0)
 	{
 		i = 0;
-		put_str(menu);
-		temp_0 = get_user_input(menu);
-		while (option[i] != NULL)
+		temp_0 = get_user_input("Please choose: ");
+		while (options[i] != NULL)
 		{
-			if (!(lxy_strcmp(temp_0, option[1])))
+			if (!(lxy_strcmp(temp_0, options[i])))
 			{
 				out = i;
 				break ;

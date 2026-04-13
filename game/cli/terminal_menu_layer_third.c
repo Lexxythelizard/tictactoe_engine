@@ -57,6 +57,7 @@ void	run_number_of_player_menu(t_player *pl)
 {
 	int	player_opt;
 
+	(void)(pl);
 	player_opt = (-1);
 	while (player_opt)
 	{
@@ -69,6 +70,7 @@ void	run_edit_player_menu(t_player *pl)
 {
 	int	player_opt;
 
+	(void)(pl);
 	player_opt = (-1);
 	while (player_opt)
 	{

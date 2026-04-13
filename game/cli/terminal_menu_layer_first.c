@@ -26,7 +26,7 @@ void	run_base_menu(t_finfo *finfo);
 void	print_field_settings(t_finfo *finfo);
 void	print_palyers(t_player *pl, int n);
 void	print_player(t_player *pl);
-void	print_base_settings(t_finfo *finfo, int cell);
+void	print_base_settings(t_finfo *finfo);
 // ./ui/cli/get_user_options.c
 int		get_user_option(char *menu, char **options);
 // --- DOC ---
@@ -56,7 +56,7 @@ void	run_predefined_tables_menu(t_finfo *finfo, t_player *pl)
 	{
 		put_str(HEAD_PRED);
 		put_str(PATH_PRED);
-		play_opt = get_option(MENU_PRED, OPT_PRED);
+		predef_opt = get_user_option(MENU_PRED, OPT_PRED);
 		if (predef_opt == 1)
 			set_field_classic_tictactoe(finfo, pl);
 		else if (predef_opt == 2)
@@ -67,6 +67,8 @@ void	run_predefined_tables_menu(t_finfo *finfo, t_player *pl)
 			set_field_four_in_a_row_huge(finfo, pl);
 		else if (predef_opt == 5)
 			set_field_four_in_a_row_wide_hex(finfo, pl);
+		if (predef_opt)
+			run_game(finfo, pl);
 	}
 }
 
@@ -87,7 +89,7 @@ void	run_table_settings_menu(t_finfo *finfo, t_player *pl)
 	{
 		put_str(HEAD_TSET);
 		put_str(PATH_TSET);
-		settings_opt = get_option(MENU_TSET, OPT_TSET);
+		settings_opt = get_user_option(MENU_TSET, OPT_TSET);
 		if (settings_opt == 1)
 			run_field_menu(finfo);
 		if (settings_opt == 2)
@@ -104,7 +106,7 @@ run show settings menu
 
 void	run_show_settings_menu(t_finfo *finfo, t_player *pl)
 {
-	int	show_opt
+	int	show_opt;
 
 	show_opt = (-1);
 	while (show_opt)
@@ -114,7 +116,7 @@ void	run_show_settings_menu(t_finfo *finfo, t_player *pl)
 		print_field_settings(finfo);
 		print_palyers(pl, 2);
 		print_base_settings(finfo);
-		show_opt = get_option(MENU_SHOW, OPT_SHOW);
+		show_opt = get_user_option(MENU_SHOW, OPT_SHOW);
 	}
 }
 
@@ -137,7 +139,7 @@ void	run_play_menu(t_finfo *finfo, t_player *pl)
 		print_field_settings(finfo);
 		print_palyers(pl, 2);
 		print_base_settings(finfo);
-		play_opt = get_option(MENU_PLAY, OPT_PLAY);
+		play_opt = get_user_option(MENU_PLAY, OPT_PLAY);
 		if (play_opt == 1)
 			put_str("menu layer thi: edit player:\n...under construction\n\n");
 			//call set_player_name();
@@ -162,6 +164,6 @@ void	run_show_info_menu(void)
 	{
 		//display info
 		put_str("...under construction...\n\n");
-		show_opt = get_option(MENU_INFO, OPT_INFO);
+		show_opt = get_user_option(MENU_INFO, OPT_INFO);
 	}
 }

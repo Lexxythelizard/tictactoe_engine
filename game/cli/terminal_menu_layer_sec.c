@@ -45,12 +45,17 @@ void	run_field_menu(t_finfo *finfo)
 		field_opt = get_user_option(MENU_FIELD, OPT_FIELD);
 		if (field_opt == 1)
 			set_field(finfo, 3, 3, 3);
-		if (field_opt == 2)
+		else if (field_opt == 2)
 			set_field(finfo, 4, 5, 4);
-		if (field_opt == 3)
+		else if (field_opt == 3)
 			set_field(finfo, 7, 7, 4);
-		if (field_opt == 4)
+		else if (field_opt == 4)
 			run_custom_field_menu(finfo);
+		if ((field_opt >= 1) && (field_opt <= 3))
+		{
+			put_str("field have been set.\n");
+			break ;
+		}
 	}
 }
 
@@ -72,9 +77,9 @@ void	run_player_menu(t_player *pl)
 		put_str(PATH_PLAYER);
 		player_opt = get_user_option(MENU_PLAYER, OPT_PLAYER);
 		if (player_opt == 1)
-			run_number_of_player_menu();
+			run_number_of_player_menu(pl);
 		if (player_opt == 2)
-			run_edit_player_menu();
+			run_edit_player_menu(pl);
 	}
 }
 
@@ -93,22 +98,29 @@ void	run_base_menu(t_finfo *finfo)
 	int	base_opt;
 
 	base_opt = (-1);
+	(void)(finfo);
 	while (base_opt)
 	{
-		put_str();
-		put_str();
-		base_opt = get_user_option(sniggle, sniggle2);
+		put_str("under construction\n");
+		put_str("under construction\n");
+		base_opt = 0;
 		if (base_opt == 2)
+			continue ;
 			//set base
 		if (base_opt == 8)
+			continue ;
 			//set base
 		if (base_opt == 10)
+			continue ;
 			//set base
 		if (base_opt == 12)
+			continue ;
 			//set base
 		if (base_opt == 16)
+			continue ;
 			//set base
 		if (base_opt == 1)
+			continue ;
 			//set base
 	}
 }

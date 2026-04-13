@@ -115,7 +115,6 @@ void	run_game(t_finfo *finfo, t_player pl[2])
 		delete_all_cells(finfo, field);
 	}
 	free_field(finfo, &field);
-	return (0);
 }
 
 /*

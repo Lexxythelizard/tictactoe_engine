@@ -30,18 +30,38 @@ void	print_field_settings(t_finfo *finfo)
 	put_newlines(2);
 }
 
+/*
 void	print_palyers(t_player *pl, int n)
 {
 	int	i;
 
 	i = 0;
-	while ((pl[i] != NULL) && (i < n))
+	while (i < n)
+	{
+		if ((pl + i) == NULL)
+			return ;
+		put_str(PLAYER_NULL);
+		put_nbr_base((i + 1), DEC_BASE);
+		put_newline();
+		print_player(&(pl[i]));
+		i++;
+	}
+}
+*/
+
+void	print_palyers(t_player *pl, int n)
+{
+	int	i;
+
+	i = 0;
+	while ((i < n) && (pl != NULL))
 	{
 		put_str(PLAYER_NULL);
 		put_nbr_base((i + 1), DEC_BASE);
 		put_newline();
 		print_player(&(pl[i]));
 		i++;
+		pl++;
 	}
 }
 
