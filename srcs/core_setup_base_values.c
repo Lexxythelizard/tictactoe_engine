@@ -4,8 +4,7 @@
 
 // --- prototype ---
 void	set_base(t_finfo *finfo, int base);
-void	set_field(t_finfo *finfo, int rows, int cols, int win_len);
-void	set_player(t_player *player, char *name, char mark);
+void	set_base_custom(t_finfo *finfo, int base, char *base_str);
 
 // --- DOC ---
 /*
@@ -43,16 +42,8 @@ void	set_base(t_finfo *finfo, int base)
 	}
 }
 
-void	set_field(t_finfo *finfo, int rows, int cols, int win_len)
+void	set_base_custom(t_finfo *finfo, int base, char *base_str)
 {
-	(*finfo).rows = rows;
-	(*finfo).columns = cols;
-	(*finfo).win_len = win_len;
+	(*finfo).base = base;
+	(*finfo).base_str = base_str;
 }
-
-void	set_player(t_player *player, char *name, char mark)
-{
-	(*player).name = name;
-	(*player).mark = mark;
-}
-

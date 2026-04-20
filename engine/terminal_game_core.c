@@ -16,6 +16,7 @@ int	get_user_option(char *menu, char **options);
 void	print_field(t_finfo *finfo, char (*field)[finfo->columns]);
 void	put_sep_line_hor(t_finfo *finfo);
 void	print_head(t_finfo *finfo);
+void	print_round_seperator(void);
 // ../ui/cli/print_error_messages.c
 void	print_to_few_arguments(int argc, int needed);
 void	print_unvalid_field(void);
@@ -113,6 +114,7 @@ void	run_game(t_finfo *finfo, t_player pl[2])
 		if (!(get_is_willing_to_continue()))
 			break ;
 		delete_all_cells(finfo, field);
+		print_round_seperator();
 	}
 	free_field(finfo, &field);
 }

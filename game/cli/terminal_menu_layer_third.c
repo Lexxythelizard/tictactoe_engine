@@ -8,8 +8,16 @@ void	run_custom_field_menu(t_finfo *finfo);
 void	run_number_of_player_menu(t_player *pl);
 void	run_edit_player_menu(t_player *pl);
 // import
-int	get_user_option(char *menu, char **options);
-
+int		get_user_option(char *menu, char **options);
+int		get_integer_from_user_input(void);
+// ./ui/cli/print_stats.c
+void	print_field_settings(t_finfo *finfo);
+// ./ui/cli/print_err_messages.c
+void	print_unvalid_field(void);
+void	print_unvalid_win_len(void);
+// ./engine/... .c
+void	correct_field(t_finfo *finfo);
+// ./game/cli/print_stats.c
 // --- DOC ---
 /*
 
@@ -30,27 +38,31 @@ run field menu
 
 void	run_custom_field_menu(t_finfo *finfo)
 {
-	int	rows;
-	int	cols;
-	int	win_len;
+	int	custom_opt;
 
-	while (1)
+	custom_opt = (-1);
+	put_str(SECTION_SEP);
+	put_str(PATH_CUSFIELD);
+	put_str(HEAD_CUSFIELD);
+	while (custom_opt)
 	{
-		rows = 0;
-		cols = 0;
-		win_len = 0;
-		while (!(rows && cols && win_len))
-		{
-			// rows = get_user_input_int();
-			// cols = get_user_input_int();
-			// win_len = get_user_input_int();
-		}
-		set_field(finfo, rows, cols, win_len);
-		// if field valid
-			// break ;
-		// not get option retry:
-			// break ; 
+		custom_opt = get_user_option(MENU_CUSFIELD, OPT_CUSFIELD);
+		if (custom_opt == 1)
+			set_field_rows(finfo, get_integer_from_user_input());
+		else if (custom_opt == 2)
+			set_field_cols(finfo, get_integer_from_user_input());
+		else if (custom_opt == 3)
+			set_field_range(finfo, get_integer_from_user_input());
+		else if (custom_opt == 4)
+			print_field_settings(finfo);
+		if (!(is_field_valid(finfo)))
+			print_unvalid_field();
+		if (!(is_range_valid(finfo)))
+			print_unvalid_win_len();
+		if (!(custom_opt))
+			correct_field(finfo);
 	}
+	print_field_settings(finfo);
 }
 
 void	run_number_of_player_menu(t_player *pl)
@@ -61,7 +73,10 @@ void	run_number_of_player_menu(t_player *pl)
 	player_opt = (-1);
 	while (player_opt)
 	{
-		put_str("...under construction...\n");
+		put_str(SECTION_SEP);
+		put_str(PATH_PLAYER_N);
+                put_str(HEAD_PLAYER_N);
+                player_opt = get_user_option(MENU_PLAYER_N, OPT_PLAYER_N);
 		break ;
 	}
 }
@@ -74,7 +89,10 @@ void	run_edit_player_menu(t_player *pl)
 	player_opt = (-1);
 	while (player_opt)
 	{
-		put_str("...under construction...\n");
+		put_str(SECTION_SEP);
+		put_str(PATH_PLAYER_M);
+                put_str(HEAD_PLAYER_M);
+                player_opt = get_user_option(MENU_PLAYER_M, OPT_PLAYER_M);
 		break ;
 	}
 }

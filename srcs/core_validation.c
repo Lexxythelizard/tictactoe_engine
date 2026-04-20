@@ -2,6 +2,7 @@
 #include "../incls/field.h"
 
 // --- prototype ---
+int	is_field_setting_valid(t_finfo *finfo);
 int	is_field_valid(t_finfo *finfo);
 int	is_range_valid(t_finfo *finfo);
 int	is_cell_input_valid(char *inp, t_finfo *finfo);
@@ -23,6 +24,11 @@ TODO:
 
 
 // --- define ---
+int	is_field_setting_valid(t_finfo *finfo)
+{
+	return ((is_field_valid(finfo)) && (is_range_valid(finfo)));
+}
+
 int	is_field_valid(t_finfo *finfo)
 {
 	if (((*finfo).rows < MIN_LEN) || ((*finfo).columns < MIN_WIDTH))

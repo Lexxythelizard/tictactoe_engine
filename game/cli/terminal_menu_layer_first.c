@@ -54,8 +54,9 @@ void	run_predefined_tables_menu(t_finfo *finfo, t_player *pl)
 	predef_opt = (-1);
 	while (predef_opt)
 	{
-		put_str(HEAD_PRED);
+		put_str(SECTION_SEP);
 		put_str(PATH_PRED);
+		put_str(HEAD_PRED);
 		predef_opt = get_user_option(MENU_PRED, OPT_PRED);
 		if (predef_opt == 1)
 			set_field_classic_tictactoe(finfo, pl);
@@ -68,7 +69,10 @@ void	run_predefined_tables_menu(t_finfo *finfo, t_player *pl)
 		else if (predef_opt == 5)
 			set_field_four_in_a_row_wide_hex(finfo, pl);
 		if (predef_opt)
+		{
+			put_str(SECTION_SEP);
 			run_game(finfo, pl);
+		}
 	}
 }
 
@@ -87,8 +91,9 @@ void	run_table_settings_menu(t_finfo *finfo, t_player *pl)
 	settings_opt = (-1);
 	while (settings_opt)
 	{
-		put_str(HEAD_TSET);
+		put_str(SECTION_SEP);
 		put_str(PATH_TSET);
+		put_str(HEAD_TSET);
 		settings_opt = get_user_option(MENU_TSET, OPT_TSET);
 		if (settings_opt == 1)
 			run_field_menu(finfo);
@@ -111,8 +116,9 @@ void	run_show_settings_menu(t_finfo *finfo, t_player *pl)
 	show_opt = (-1);
 	while (show_opt)
 	{
-		put_str(HEAD_SHOW);
+		put_str(SECTION_SEP);
 		put_str(PATH_SHOW);
+		put_str(HEAD_SHOW);
 		print_field_settings(finfo);
 		print_palyers(pl, 2);
 		print_base_settings(finfo);
@@ -134,8 +140,9 @@ void	run_play_menu(t_finfo *finfo, t_player *pl)
 	play_opt = (-1);
 	while (play_opt)
 	{
-		put_str(HEAD_PLAY);
+		put_str(SECTION_SEP);
 		put_str(PATH_PLAY);
+		put_str(HEAD_PLAY);
 		print_field_settings(finfo);
 		print_palyers(pl, 2);
 		print_base_settings(finfo);
@@ -158,12 +165,13 @@ void	run_show_info_menu(void)
 	int	show_opt;
 
 	show_opt = (-1);
-	put_str(HEAD_INFO);
+	put_str(SECTION_SEP);
 	put_str(PATH_INFO);
+	put_str(HEAD_INFO);
 	while (show_opt)
 	{
 		//display info
-		put_str("...under construction...\n\n");
+		put_str("...under construction...\n\n\twill display game Info soon!\n");
 		show_opt = get_user_option(MENU_INFO, OPT_INFO);
 	}
 }

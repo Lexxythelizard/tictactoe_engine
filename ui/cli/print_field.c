@@ -8,6 +8,7 @@
 void	print_field(t_finfo *finfo, char (*field)[finfo->columns]);
 void	put_sep_line_hor(t_finfo *finfo);
 void	print_head(t_finfo *finfo);
+void	print_round_seperator(void);
 
 // --- DOC ---
 // comment
@@ -71,4 +72,9 @@ void	print_head(t_finfo *finfo)
 	put_nbr_base((*finfo).columns, (*finfo).base_str);
 	put_str(" columns\n");
 	put_str("\n");
+}
+
+void	print_round_seperator(void)
+{
+	put_str(S_SEPR);
 }

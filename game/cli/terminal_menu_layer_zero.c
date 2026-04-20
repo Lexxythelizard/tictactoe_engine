@@ -39,8 +39,9 @@ void	run_main_menu(t_finfo *finfo, t_player *pl)
 	main_opt = (-1);
 	while(main_opt)
 	{
-		put_str(HEAD_MAIN);
+		put_str(SECTION_SEP);
 		put_str(PATH_MAIN);
+		put_str(HEAD_MAIN);
 		main_opt = get_user_option(MENU_MAIN, OPT_MAIN);
 		if (main_opt == 1)
 			run_predefined_tables_menu(finfo, pl);
@@ -53,6 +54,6 @@ void	run_main_menu(t_finfo *finfo, t_player *pl)
 		else if (main_opt == 5)
 			run_show_info_menu();
 		if (!(main_opt))
-			put_str("Thanks for playing :)\n\n\tBye\n\n");
+			put_str("Thanks for playing :)\n\n\tBye!\n\n");
 	}
 }

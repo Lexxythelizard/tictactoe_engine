@@ -6,6 +6,7 @@
 // --- prototype ---
 int	get_is_willing_to_continue(void);
 int	get_user_option(char *menu, char **options);
+int	get_integer_from_user_input(void);
 // import
 
 // --- DOC ---
@@ -119,3 +120,23 @@ int	get_user_option(char *menu, char **options)
 	return (out);
 }
 
+int	get_integer_from_user_input(void)
+{
+	char	*temp_0;
+	int	out;
+
+	out = (-1);
+	
+	while (out < 0)
+	{
+		temp_0 = get_user_input("Please choose: ");
+		if (!(lxy_strcmp(temp_0, "X")))
+			out = 0;
+		else if (is_numeric(temp_0))
+			out = get_nbr_from_base(temp_0, DEC_BASE);
+		else
+			put_str("invalid input\n");
+		free(temp_0);
+	}
+	return (out);
+}

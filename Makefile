@@ -16,11 +16,12 @@ clean:
 	rm -f ./srcs/core_field_manipulation.o ./srcs/core_read_field.o \
 	./srcs/core_is_won.o ./srcs/core_won_diagonal.o \
 	./srcs/core_won_row_col.o ./srcs/core_validation.o \
-	./srcs/core_setup_values.o ./srcs/core_utils.o  \
+	./srcs/core_setup_field_values.o ./srcs/core_setup_player_values.o \
+	./srcs/core_setup_base_values.o ./srcs/core_utils.o  \
 	./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
 	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o \
 	./srcs/io_terminal_output_utils.o ./srcs/io_string_array.o \
-	./srcs/io_utils.o
+	./srcs/io_utils.o ./srcs/null_utils.o
 
 # +++++ programms +++++
 
@@ -34,7 +35,7 @@ clean:
 	-L ./ttt_lib/ -l tttcore -l tttio -l tttutils -o ./play/prototype
 
 ./play/prototype_two : ./playable_prototype/second_prototype.c \
-	./engine/terminal_game_core.c \
+	./engine/terminal_game_core.c ./engine/correct_object_stats.c \
 	./game/cli/terminal_menu_layer_zero.c \
 	./game/cli/terminal_menu_layer_first.c ./game/cli/terminal_menu_layer_sec.c \
 	./game/cli/terminal_menu_layer_third.c ./game/cli/terminal_set_predefined_field.c \
@@ -43,11 +44,12 @@ clean:
 	./ui/cli/get_options.c
 	mkdir -p play
 	cc -Wall -Wextra -Werror -g ./playable_prototype/second_prototype.c \
-	./engine/terminal_game_core.c \
+	./engine/terminal_game_core.c ./engine/correct_object_stats.c \
 	./game/cli/terminal_menu_layer_zero.c \
 	./game/cli/terminal_menu_layer_first.c ./game/cli/terminal_menu_layer_sec.c \
 	./game/cli/terminal_menu_layer_third.c \
-	./game/cli/terminal_set_predefined_field.c ./ui/cli/print_field.c \
+	./game/cli/terminal_set_predefined_field.c \
+	./ui/cli/print_field.c \
 	./ui/cli/print_error_messages.c ./ui/cli/print_game_messages.c \
 	./ui/cli/print_stats.c ./ui/cli/get_options.c \
 	./incls/terminal_menu.h \
@@ -57,12 +59,15 @@ clean:
 
 ./ttt_lib/libtttcore.a : ./srcs/core_field_manipulation.o ./srcs/core_read_field.o \
 	./srcs/core_is_won.o ./srcs/core_won_diagonal.o ./srcs/core_won_row_col.o \
-	./srcs/core_validation.o ./srcs/core_setup_values.o ./srcs/core_utils.o
+	./srcs/core_validation.o ./srcs/core_setup_field_values.o \
+	./srcs/core_setup_player_values.o ./srcs/core_setup_base_values.o \
+	./srcs/core_utils.o
 	mkdir -p ttt_lib
 	ar rcs ./ttt_lib/libtttcore.a ./srcs/core_field_manipulation.o \
 	./srcs/core_read_field.o ./srcs/core_is_won.o ./srcs/core_won_diagonal.o \
 	./srcs/core_won_row_col.o ./srcs/core_validation.o \
-	./srcs/core_setup_values.o ./srcs/core_utils.o
+	./srcs/core_setup_field_values.o ./srcs/core_setup_player_values.o \
+	./srcs/core_setup_base_values.o ./srcs/core_utils.o
 
 ./ttt_lib/libtttio.a : ./srcs/io_user_input.o ./srcs/io_convert_str_int.o \
 	./srcs/io_integrate_str_in_str.o ./srcs/io_terminal_output.o \
@@ -74,9 +79,10 @@ clean:
 	./srcs/io_terminal_output_utils.o ./srcs/io_string_array.o \
 	./srcs/io_utils.o
 
-./ttt_lib/libtttutils.a : ./srcs/core_utils.o ./srcs/io_utils.o
+./ttt_lib/libtttutils.a : ./srcs/core_utils.o ./srcs/io_utils.o ./srcs/null_utils.o
 	mkdir -p ttt_lib
-	ar rcs ./ttt_lib/libtttutils.a ./srcs/core_utils.o ./srcs/io_utils.o
+	ar rcs ./ttt_lib/libtttutils.a \
+	./srcs/core_utils.o ./srcs/io_utils.o ./srcs/null_utils.o
 
 # +++++ Objectfiles +++++
 
@@ -110,10 +116,20 @@ clean:
 	cc -Wall -Wextra -Werror -c ./srcs/core_validation.c -I ./incls/ \
 	-o ./srcs/core_validation.o
 
-./srcs/core_setup_values.o : ./srcs/core_setup_values.c ./incls/field.h ./incls/player.h \
-	./incls/tttcore.h
-	cc -Wall -Wextra -Werror -c ./srcs/core_setup_values.c -I ./incls/ \
-	-o ./srcs/core_setup_values.o
+./srcs/core_setup_field_values.o : ./srcs/core_setup_field_values.c \
+	./incls/field.h ./incls/player.h ./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_setup_field_values.c -I ./incls/ \
+	-o ./srcs/core_setup_field_values.o
+
+./srcs/core_setup_player_values.o : ./srcs/core_setup_player_values.c \
+	./incls/field.h ./incls/player.h ./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_setup_player_values.c -I ./incls/ \
+	-o ./srcs/core_setup_player_values.o
+
+./srcs/core_setup_base_values.o : ./srcs/core_setup_base_values.c \
+	./incls/field.h ./incls/player.h ./incls/tttcore.h
+	cc -Wall -Wextra -Werror -c ./srcs/core_setup_base_values.c -I ./incls/ \
+	-o ./srcs/core_setup_base_values.o
 
 ./srcs/core_utils.o : ./srcs/core_utils.c ./incls/field.h \
 	./incls/tttcore.h ./incls/tttutils.h
@@ -154,6 +170,10 @@ clean:
 	./incls/tttcore.h ./incls/tttutils.h
 	cc -Wall -Wextra -Werror -c ./srcs/io_utils.c -I ./incls/ \
 	-o ./srcs/io_utils.o
+
+./srcs/null_utils.o : ./srcs/null_utils.c ./incls/tttutils.h
+	cc -Wall -Wextra -Werror -c ./srcs/null_utils.c -I ./incls/ \
+	-o ./srcs/null_utils.o
 
 .PHONY: clean createlib first_prototype second_prototype
 

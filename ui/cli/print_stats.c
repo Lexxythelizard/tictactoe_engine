@@ -59,7 +59,7 @@ void	print_palyers(t_player *pl, int n)
 		put_str(PLAYER_NULL);
 		put_nbr_base((i + 1), DEC_BASE);
 		put_newline();
-		print_player(&(pl[i]));
+		print_player(pl);
 		i++;
 		pl++;
 	}

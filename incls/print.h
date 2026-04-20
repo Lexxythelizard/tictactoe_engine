@@ -16,6 +16,7 @@
 # define C_NEWL	('\n')
 # define S_SEPH	"----"
 # define S_ULTI	"++++"
+# define S_SEPR "\n-------------------------------------------------\n"
 
 # define ERR_FIELD "field is invalid:\n\tmin lenth is : <s>\n\tmin width is: <s>\n"
 # define ERR_LEN "win lentgh is invalid:\n\tmin win lenth is : <s>\n\tand <= min(row, col)\n"
